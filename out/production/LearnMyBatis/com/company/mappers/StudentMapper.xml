@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.model.Student">
+    <resultMap id="result" type="com.company.model.Student">
+    </resultMap>
+
+    <select id="getNB" parameterType="int" resultMap="result">
+        select * from student where ID=#{id};
+    </select>
+
+    <select id= "getAll" resultMap="result">
+        SELECT * FROM student;
+    </select>
+    
+    <update id="update" parameterType="com.company.model.Student">
+        UPDATE student SET NAME =#{name},
+                           BRANCH = #{branch},
+                           PERCENTAGE = #{percentage},
+                           PHONE = #{phone},
+                           EMAIL = #{email}
+        WHERE ID=#{id};
+    </update>
+    <insert id="insert" parameterType="com.company.model.Student">
+        INSERT INTO student (NAME,BRANCH,PERCENTAGE,PHONE,EMAIL) VALUES (#{name},#{branch},#{percentage},#{phone},#{email});
+<!--        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            select last_insert_id as id;
+        </selectKey>-->
+    </insert>
+
+    <delete id="delete" parameterType="com.company.model.Student">
+        DELETE FROM  student where ID=#{id}
+    </delete>
+
+</mapper>
